@@ -6,34 +6,42 @@ class GildedRose(object):
         self.items = items
 
     def update_quality(self):
-        for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
+        """
+        Updates the quality of items
+        """
+        for thing_to_adjust in self.items:
+            # loop through all items
+            if thing_to_adjust.name != "Aged Brie" and thing_to_adjust.name != "Backstage passes to a TAFKAL80ETC concert":
+                if thing_to_adjust.quality > 0:
+                    if thing_to_adjust.name != "Sulfuras, Hand of Ragnaros":
+                        thing_to_adjust.quality = thing_to_adjust.quality - 1
             else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
+                # threshold
+                if thing_to_adjust.quality < 50:
+                    thing_to_adjust.quality = thing_to_adjust.quality + 1
+                    if thing_to_adjust.name == "Backstage passes to a TAFKAL80ETC concert":
+                        if thing_to_adjust.sell_in < 11:
+                            if thing_to_adjust.quality < 50:
+                                thing_to_adjust.quality = thing_to_adjust.quality + 1
+                        if thing_to_adjust.sell_in < 6:
+                            if thing_to_adjust.quality < 50:
+                                thing_to_adjust.quality = thing_to_adjust.quality + 1
+            # ignore
+            if thing_to_adjust.name != "Sulfuras, Hand of Ragnaros":
+                thing_to_adjust.sell_in = thing_to_adjust.sell_in - 1
+            if thing_to_adjust.sell_in < 0:
+                # aged brie does not age
+                if thing_to_adjust.name != "Aged Brie":
+                    if thing_to_adjust.name != "Backstage passes to a TAFKAL80ETC concert":
+                        if thing_to_adjust.quality > 0:
+                            if thing_to_adjust.name != "Sulfuras, Hand of Ragnaros":
+                                thing_to_adjust.quality = thing_to_adjust.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        thing_to_adjust.quality = thing_to_adjust.quality - thing_to_adjust.quality
                 else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+                    if thing_to_adjust.quality < 50:
+                        thing_to_adjust.quality = thing_to_adjust.quality + 1
+        # items should be up to date at this point
 
 
 class Item:

@@ -18,7 +18,9 @@ export class GildedRose {
   }
 
   updateQuality() {
+    // update quality
     for (let i = 0; i < this.items.length; i++) {
+      // for all items
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
@@ -26,6 +28,7 @@ export class GildedRose {
           }
         }
       } else {
+        // threshold
         if (this.items[i].quality < 50) {
           this.items[i].quality = this.items[i].quality + 1
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -46,6 +49,7 @@ export class GildedRose {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
+        // aged brie does not age
         if (this.items[i].name != 'Aged Brie') {
           if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].quality > 0) {
@@ -63,7 +67,7 @@ export class GildedRose {
         }
       }
     }
-
+    // items should be update at this point
     return this.items;
   }
 }
