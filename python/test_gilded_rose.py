@@ -295,7 +295,7 @@ class GildedRoseTest(unittest.TestCase):
         )
         rose = GildedRose(items=[item])
         expected_quality = 0
-        expected_sell_in = -1
+        expected_sell_in = 0
 
         # WHEN
         rose.update_quality()
@@ -323,7 +323,7 @@ class GildedRoseTest(unittest.TestCase):
         )
         rose = GildedRose(items=[item])
         expected_quality = 0
-        expected_sell_in = -1
+        expected_sell_in = 0
 
         # WHEN
         rose.update_quality()
