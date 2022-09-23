@@ -12,8 +12,11 @@ namespace csharp
 
         public void UpdateQuality()
         {
+            // update items
             for (var i = 0; i < Items.Count; i++)
             {
+                // for all items
+                // brie does not age
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
                     if (Items[i].Quality > 0)
@@ -26,6 +29,7 @@ namespace csharp
                 }
                 else
                 {
+                    // threshold
                     if (Items[i].Quality < 50)
                     {
                         Items[i].Quality = Items[i].Quality + 1;
@@ -50,7 +54,7 @@ namespace csharp
                         }
                     }
                 }
-
+                // ignore
                 if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                 {
                     Items[i].SellIn = Items[i].SellIn - 1;
@@ -84,6 +88,7 @@ namespace csharp
                     }
                 }
             }
+            // items should be up to date here
         }
     }
 }

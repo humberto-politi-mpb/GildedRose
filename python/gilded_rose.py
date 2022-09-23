@@ -7,7 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         """
-        Updates the quality of items
+        Updates the items
         """
         for thing_to_adjust in self.items:
             # loop through all items

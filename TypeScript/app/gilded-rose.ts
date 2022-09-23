@@ -18,9 +18,10 @@ export class GildedRose {
   }
 
   updateQuality() {
-    // update quality
+    // update items
     for (let i = 0; i < this.items.length; i++) {
       // for all items
+      // brie does not age
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
@@ -45,6 +46,7 @@ export class GildedRose {
           }
         }
       }
+      // ignore
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }

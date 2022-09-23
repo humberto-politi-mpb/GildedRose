@@ -21,10 +21,13 @@ print_item(char* buffer, Item* item)
 void 
 update_quality(Item items[], int size) 
 {
+    // update items
     int i;
     
     for (i = 0; i < size; i++)
     {
+        // for all items
+        // brie does not age
         if (strcmp(items[i].name, "Aged Brie") && strcmp(items[i].name, "Backstage passes to a TAFKAL80ETC concert"))
         {
             if (items[i].quality > 0)
