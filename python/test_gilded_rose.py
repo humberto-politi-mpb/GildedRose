@@ -340,7 +340,7 @@ class GildedRoseTest(unittest.TestCase):
         AND has a quality of 10
         AND has 10 days left to be sold
         WHEN calling update_quality
-        THEN the quality should be 8
+        THEN the quality should be 6
         AND the sell in should be 9
         """
         # GIVEN
@@ -350,7 +350,7 @@ class GildedRoseTest(unittest.TestCase):
             quality=10,
         )
         rose = GildedRose(items=[item])
-        expected_quality = 8
+        expected_quality = 6
         expected_sell_in = 9
 
         # WHEN

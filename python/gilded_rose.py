@@ -16,25 +16,28 @@ class GildedRose(object):
 
     def _fetch_handler(self, item: "Item") -> Callable:
         item_name = item.name.lower()
-        if item_name == "aged brie":
+        is_cheese = item_name == "aged brie"
+        is_legendary = item_name.startswith("sulfuras ")
+        is_ticket = item_name.startswith("backstage passes ")
+        is_conjured = item_name.startswith("conjured ")
+
+        if is_cheese:
             return self._cheese_handler
 
-        if item_name.startswith("sulfuras "):
+        if is_legendary:
             return self._legendary_handler
 
-        if item_name.startswith("backstage passes "):
+        if is_ticket:
             return self._ticket_handler
 
-        if item_name.startswith("conjured "):
+        if is_conjured:
             return self._conjured_handler
 
-        return self._default_handle
-
-    def _has_expired(self, item: "Item") -> bool:
-        return item.sell_in <= 0
+        return self._default_handler
 
     def _cheese_handler(self, item: "Item") -> None:
-        if self._has_expired(item=item):
+        has_expired = item.sell_in <= 0
+        if has_expired:
             item.quality += 2
         else:
             item.quality += 1
@@ -44,7 +47,7 @@ class GildedRose(object):
         pass
 
     def _ticket_handler(self, item: "Item") -> None:
-        has_expired = self._has_expired(item=item)
+        has_expired = item.sell_in <= 0
         if has_expired:
             item.quality = self.MIN_QUALITY
         elif item.sell_in > 10:
@@ -58,13 +61,13 @@ class GildedRose(object):
             item.sell_in -= 1
 
     def _conjured_handler(self, item: "Item") -> None:
-        item.quality -= 2
+        item.quality -= 4
         item.sell_in -= 1
 
     def _default_handler(self, item: "Item") -> None:
         is_max_quality = item.quality == self.MAX_QUALITY
         is_min_quality = item.quality == self.MIN_QUALITY
-        has_expired = self._has_expired(item=item)
+        has_expired = item.sell_in <= 0
 
         if has_expired:
             item.quality -= 2
